@@ -24,10 +24,10 @@ export default function Home() {
           avec React, Next.js et Node.js.
         </p>
         <div className={styles.heroButtons}>
-          <a href="#projects" className={`${styles.btn} ${styles.btnPrimary}`}>
+          <a href="projects" className={`${styles.btn} ${styles.btnPrimary}`}>
             Voir mes projets
           </a>
-          <a href="#contact" className={`${styles.btn} ${styles.btnSecondary}`}>
+          <a href="contact" className={`${styles.btn} ${styles.btnSecondary}`}>
             Me contacter
           </a>
         </div>
