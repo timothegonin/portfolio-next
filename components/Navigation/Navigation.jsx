@@ -24,6 +24,11 @@ export default function Navigation() {
             </Link>
           </li>
           <li>
+            <Link href="/formations" className={pathname === '/formations' ? `${styles.link} ${styles.active}` : styles.link}>
+              Formations
+            </Link>
+          </li>
+          <li>
             <Link href="/about" className={pathname === '/about' ? `${styles.link} ${styles.active}` : styles.link}>
               À propos
             </Link>
