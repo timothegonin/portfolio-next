@@ -1,45 +1,95 @@
 import styles from './page.module.css'
-import Tag from '@/components/Tag/Tag'
 
-export default function Projects() {
-  return (
-    <div className="container">
-      <h1 className="title">Mes Projets</h1>
-      <p className="description">
-        Découvrez les projets sur lesquels j&apos;ai travaillé
-      </p>
-      
-      <div className={styles.grid}>
-        <div className={styles.card}>
-          <h2>Portfolio Personnel</h2>
-          <p>Site web moderne construit avec Next.js</p>
-          <div className={styles.tags}>
-            <Tag>Next.js</Tag>
-            <Tag>React</Tag>
-            <Tag>CSS Modules</Tag>
-          </div>
-        </div>
+// Liste de projets (normalement, ça viendrait d'une API ou d'une base de données)
+const projects = {
+   'portfolio': {
+       title: 'Portfolio Personnel',
+       slug: 'portfolio',
+       description: 'Site web moderne construit avec Next.js, présentant mes projets et compétences de manière interactive.',
+       technologies: ['Next.js', 'React', 'CSS Modules'],
+       image: '/images/portfolio.jpg',
+       github: 'https://github.com/...',
+       demo: 'https://...'
+   },
+   'ecommerce': {
+       title: 'App E-commerce',
+       slug: 'ecommerce',
+       description: 'Application de vente en ligne complète avec gestion du panier, paiement et interface d\'administration.',
+       technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+       image: '/images/ecommerce.jpg',
+       github: 'https://github.com/...',
+       demo: 'https://...'
+   },
+   'blog': {
+       title: 'Blog Technique',
+       slug: 'blog',
+       description: 'Blog personnel sur le développement web avec système de commentaires et gestion de contenu Markdown.',
+       technologies: ['Next.js', 'Markdown', 'SEO', 'RSS'],
+       image: '/images/blog.jpg',
+       github: 'https://github.com/...',
+       demo: 'https://...'
+   }
+}
 
-        <div className={styles.card}>
-          <h2>App E-commerce</h2>
-          <p>Application de vente en ligne avec panier</p>
-          <div className={styles.tags}>
-            <Tag>React</Tag>
-            <Tag>Node.js</Tag>
-            <Tag>MongoDB</Tag>
-          </div>
-        </div>
+export default async function ProjectDetail({ params }) {
+   const { slug } = await params
+   // Next.js passe automatiquement le slug dans params
+   const project = projects[slug]
 
-        <div className={styles.card}>
-          <h2>Blog Technique</h2>
-          <p>Blog personnel sur le développement web</p>
-          <div className={styles.tags}>
-            <Tag>Next.js</Tag>
-            <Tag>Markdown</Tag>
-            <Tag>SEO</Tag>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+   // Si le projet n'existe pas, afficher un message
+   if (!project) {
+       return (
+           <div className="container">
+               <h1>Projet non trouvé</h1>
+               <p>Ce projet n&apos;existe pas ou a été supprimé.</p>
+           </div>
+       )
+   }
+
+   return (
+       <div className={styles.container}>
+           <div className={styles.header}>
+               <h1 className={styles.title}>{project.title}</h1>
+               <p className={styles.description}>{project.description}</p>
+           </div>
+
+           <div className={styles.content}>
+               <div className={styles.imageWrapper}>
+                   <div className={styles.imagePlaceholder}>
+                       Image du projet
+                   </div>
+               </div>
+
+               <div className={styles.details}>
+                   <h2>Technologies utilisées</h2>
+                   <div className={styles.technologies}>
+                       {project.technologies.map((tech, index) => (
+                           <span key={index} className={styles.tech}>
+                               {tech}
+                           </span>
+                       ))}
+                   </div>
+
+                   <div className={styles.links}>
+                       <a
+                           href={project.github}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className={styles.link}
+                       >
+                           Voir le code →
+                       </a>
+                       <a
+                           href={project.demo}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className={`${styles.link} ${styles.linkPrimary}`}
+                       >
+                           Voir la démo →
+                       </a>
+                   </div>
+               </div>
+           </div>
+       </div>
+   )
 }
