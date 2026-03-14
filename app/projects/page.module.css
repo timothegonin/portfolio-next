@@ -52,15 +52,3 @@
   color: #364AB0;
   font-weight: 600;
 }
-.card {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
-
-.viewMore {
-  display: inline-block;
-  margin-top: 1rem;
-  color: #667eea;
-  font-weight: 600;
-}
