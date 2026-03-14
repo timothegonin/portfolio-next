@@ -57,3 +57,9 @@ return (
     </div>
 )
 }
+
+export function generateStaticParams() {
+    return projectsData.map((project) => ({
+        slug: project.slug,
+    }))
+}
