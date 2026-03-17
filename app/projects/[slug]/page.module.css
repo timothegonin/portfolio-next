@@ -45,6 +45,12 @@
   font-size: 1.5rem;
 }
 
+.image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
 .details {
   background: white;
   padding: 2rem;

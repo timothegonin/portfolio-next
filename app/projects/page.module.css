@@ -52,15 +52,24 @@
   color: #364AB0;
   font-weight: 600;
 }
-.card {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
+
+.card:hover .image {
+    transform: scale(1.05);
 }
 
-.viewMore {
-  display: inline-block;
-  margin-top: 1rem;
-  color: #667eea;
-  font-weight: 600;
+
+
+.imageWrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    background-color: #364AB0;
 }

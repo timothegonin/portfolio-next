@@ -1,5 +1,6 @@
 import styles from "./page.module.css";
 import Tag from "@/components/Tag/Tag";
+import projectsData from '@/data/projects.json'
 import Link from "next/link";
 
 export default function Projects() {
@@ -11,35 +12,23 @@ return (
     </p>
 
     <div className={styles.grid}>
-    <Link href="/projects/portfolio" className={styles.card}>
-        <h2>Portfolio Personnel</h2>
-        <p>Site web moderne construit avec Next.js</p>
-        <div className={styles.tags}>
-        <Tag>Next.js</Tag>
-        <Tag>React</Tag>
-        <Tag>CSS Modules</Tag>
-        </div>
-    </Link>
-
-    <Link href="/projects/ecommerce" className={styles.card}>
-        <h2>App E-commerce</h2>
-        <p>Application de vente en ligne avec panier</p>
-        <div className={styles.tags}>
-        <Tag>React</Tag>
-        <Tag>Node.js</Tag>
-        <Tag>MongoDB</Tag>
-        </div>
-    </Link>
-
-    <Link href="/projects/blog" className={styles.card}>
-        <h2>Blog Technique</h2>
-        <p>Blog personnel sur le développement web</p>
-        <div className={styles.tags}>
-        <Tag>Next.js</Tag>
-        <Tag>Markdown</Tag>
-        <Tag>SEO</Tag>
-        </div>
-    </Link>
+        {projectsData.map((project) => (
+            <Link href={`/projects/${project.slug}`} key={project.id} className={styles.card}>
+                <div className={styles.imageWrapper}>
+                    <img src={project.image} alt={project.title} className={styles.image} />
+                </div>
+                <div className={styles.content}>
+                    <h2>{project.title}</h2>
+                    <p>{project.description}</p>
+                    <div className={styles.tags}>
+                        {project.tags.map((tech, index) => (
+                            <Tag key={index} isDark={true}>{tech}</Tag>
+                        ))}
+                    </div>
+                    <span className={styles.viewMore}>Voir le projet</span>
+                </div>
+            </Link>
+        ))}
     </div>
 </div>
 );
