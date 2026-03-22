@@ -2,6 +2,11 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import formationsData from "@/data/formations.json"
 
+export const metadata = {
+    title: 'Mes formations | Portfolio',
+    description: 'Decouvrez mes formations'
+}
+
 export default function Formations() {
 
 return (
