@@ -3,6 +3,27 @@ import projectsData from "@/data/projects.json"
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 
+export async function generateMetadata({params}) {
+    const {slug} = await params
+    const project = projectsData.find(p => p.slug === slug)
+
+    if(!project) {
+        return {
+            title: 'Projet non trouvé',
+        }
+    }
+
+    return {
+        title: `${project.title} | Portfolio`,
+        description : project.longDescription,
+        openGraph: {
+            title: project.title,
+            description: project.shortDescription,
+            images: [project.image],
+        },
+    }
+}
+
 export default async function ProjectDetail({ params }) {
 const { slug } = await params
 // Next.js passe automatiquement le slug dans params

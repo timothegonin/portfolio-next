@@ -4,6 +4,11 @@ import projectsData from '@/data/projects.json'
 import Link from "next/link";
 import Image from "next/image";
 
+export const metadata = {
+    title: 'Mes Projets | Portfolio',
+    description: 'Decouvrez mes projets de développement web : applications React, sites Next.js et plus enccore.'
+}
+
 export default function Projects() {
 return (
 <div className="container">
